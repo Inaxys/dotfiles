@@ -29,14 +29,16 @@ NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-surround'   "cs-
 NeoBundle 'tpope/vim-commentary' "cm-
-NeoBundle 'scrooloose/syntastic' "needs more install
+NeoBundle 'neomake/neomake'
 NeoBundle 'tmux-plugins/vim-tmux-focus-events'
 NeoBundle 'tpope/vim-obsession'
 NeoBundle 'garbas/vim-snipmate'
 NeoBundle 'tomtom/tlib_vim'
 NeoBundle 'MarcWeber/vim-addon-mw-utils'
-"NeoBundle 'honza/vim-snippets'
-"NeoBundle 'SirVer/ultisnips'
+
+NeoBundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
 
 call neobundle#end()
 filetype plugin indent on
@@ -78,17 +80,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 "================================================
 "
-"================== Linter ======================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"================================================
-"
 "================== Settings ====================
 set number
 set nobackup
@@ -100,4 +91,8 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set smarttab
+
+call neomake#configure#automake('nw', '750')
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
 "================================================
